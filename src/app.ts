@@ -4,6 +4,7 @@ import { User } from './Models/users';
 import {allRoutes} from "./route/allRoutes";
 
 const app = express();
+app.use(express.json());
 app.use(allRoutes);
 
 const PORT = process.env.PORT || 4000;

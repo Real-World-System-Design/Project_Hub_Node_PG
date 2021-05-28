@@ -8,6 +8,7 @@ const typeorm_1 = require("typeorm");
 const users_1 = require("./Models/users");
 const allRoutes_1 = require("./route/allRoutes");
 const app = express_1.default();
+app.use(express_1.default.json());
 app.use(allRoutes_1.allRoutes);
 const PORT = process.env.PORT || 4000;
 app.get('/', (req, res) => {

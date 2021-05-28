@@ -15,4 +15,15 @@ route.get('/', async (req, res) => {
         });
     }
 });
+route.post('/', async (req, res) => {
+    try {
+        const user = await users_1.registerUser(req.body);
+        res.status(200).send(user);
+    }
+    catch (e) {
+        res.status(500).send({
+            err: `server err ${e}`
+        });
+    }
+});
 exports.userRoute = route;
