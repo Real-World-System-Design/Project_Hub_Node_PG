@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { getAllUsers, registerUser } from "../controller/users";
+import { getAllUsers, loginUser, registerUser } from "../controller/users";
 
 const route = Router();
 
@@ -14,7 +14,7 @@ route.get('/', async(req, res) => {
     }
 });
 
-route.post('/', async(req, res) => {
+route.post('/register', async(req, res) => {
     try {
         const user = await registerUser(req.body);
         res.status(200).send(user);
@@ -24,5 +24,16 @@ route.post('/', async(req, res) => {
         });
     }
 });
+
+route.post('/login', async(req, res) => {
+    try {
+        const user = await loginUser(req.body);
+        res.status(200).send(user); 
+    } catch (e) {
+        res.json({
+            err : e
+        })
+    }
+})
 
 export const userRoute = route;
