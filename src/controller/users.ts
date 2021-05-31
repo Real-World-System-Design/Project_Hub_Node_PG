@@ -2,6 +2,7 @@ import { getRepository } from "typeorm";
 import { User } from "../Models/users";
 import { sign } from "../utils/jwt";
 import { hashPass, matchpass } from "../utils/password";
+import { sanitization } from "../utils/sanitization";
 
 interface userRegisterData {
     username: string,
@@ -30,12 +31,12 @@ export async function registerUser(data: userRegisterData): Promise<User>{
 
     const repo = getRepository(User);
     try {
-        const user = repo.save(new User(
+        const user = await repo.save(new User(
             data.username,
             await hashPass(data.password),
             data.email
         ));
-        return user;
+        return await sanitization(user);
     } catch (e) {
         throw e
     }
@@ -53,7 +54,7 @@ export async function loginUser(data: userLoginData) {
         if(!user) throw new Error("no user with this email exists");
 
         //match pass
-        const passMatch = await matchpass(data.password, user.password);
+        const passMatch = await matchpass(data.password, user.password!!);
         if(passMatch == false) throw new Error("password does not match");
         user.token = await sign(user);      
         return user;

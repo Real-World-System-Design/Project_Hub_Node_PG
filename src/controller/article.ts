@@ -1,6 +1,7 @@
 import { getRepository } from "typeorm";
 import { Project } from "../Models/projects";
 import { User } from "../Models/users";
+import { sanitization } from "../utils/sanitization";
 // import { slugify } from "../utils/slugify";
 
 
@@ -36,7 +37,7 @@ export async function createProject(data: projectData, email: string): Promise<P
             data.title,
             data.title,
             data.body,
-            user
+            await sanitization(user)
         ));
         return article;
     } catch (e) {

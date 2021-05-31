@@ -9,7 +9,7 @@ export class User {
     username: string
 
     @Column({type: 'text'})
-    password: string
+    password?: string
 
     token: string
 
