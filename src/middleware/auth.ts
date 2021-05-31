@@ -7,6 +7,8 @@ export async function authByToken(req: Request, res: Response, next: NextFunctio
 
     if(!authHeader) return res.status(401).send("authorization failed");
 
+    if(authHeader[0] != 'Token') return res.status(401).send("Token missing");
+
     try {
         const token = authHeader[1];
         const user = await decode(token);
@@ -14,7 +16,7 @@ export async function authByToken(req: Request, res: Response, next: NextFunctio
         (req as any).user = user;
         return next();        
     } catch (e) {
-        throw e
+        res.send(e);
     }
 
 }

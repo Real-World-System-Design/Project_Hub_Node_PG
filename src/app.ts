@@ -1,5 +1,6 @@
 import express from 'express';
 import {createConnection} from 'typeorm';
+import { Project } from './Models/projects';
 import { User } from './Models/users';
 import {allRoutes} from "./route/allRoutes";
 
@@ -21,7 +22,7 @@ async function start() {
         username: "project",
         dropSchema: true,
         synchronize: true,
-        entities: [User],
+        entities: [User, Project],
         logging: true,
         logger: 'advanced-console'
     })

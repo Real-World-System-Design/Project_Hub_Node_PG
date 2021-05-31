@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const typeorm_1 = require("typeorm");
+const projects_1 = require("./Models/projects");
 const users_1 = require("./Models/users");
 const allRoutes_1 = require("./route/allRoutes");
 const app = express_1.default();
@@ -22,7 +23,7 @@ async function start() {
         username: "project",
         dropSchema: true,
         synchronize: true,
-        entities: [users_1.User],
+        entities: [users_1.User, projects_1.Project],
         logging: true,
         logger: 'advanced-console'
     });
