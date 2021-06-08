@@ -5,6 +5,7 @@ const typeorm_1 = require("typeorm");
 const users_1 = require("../Models/users");
 const jwt_1 = require("../utils/jwt");
 const password_1 = require("../utils/password");
+const sanitization_1 = require("../utils/sanitization");
 async function getAllUsers() {
     const repo = typeorm_1.getRepository(users_1.User);
     const users = repo.find();
@@ -21,8 +22,8 @@ async function registerUser(data) {
         throw new Error('password filed is blank');
     const repo = typeorm_1.getRepository(users_1.User);
     try {
-        const user = repo.save(new users_1.User(data.username, await password_1.hashPass(data.password), data.email));
-        return user;
+        const user = await repo.save(new users_1.User(data.username, await password_1.hashPass(data.password), data.email));
+        return await sanitization_1.sanitization(user);
     }
     catch (e) {
         throw e;

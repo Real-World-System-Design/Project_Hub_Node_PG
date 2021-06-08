@@ -2,14 +2,13 @@ import { getRepository } from "typeorm";
 import { Project } from "../Models/projects";
 import { User } from "../Models/users";
 import { sanitization } from "../utils/sanitization";
-// import { slugify } from "../utils/slugify";
+import { slugify } from "../utils/slugify";
 
-
-
-// taglist: string[]
 interface projectData {
     title: string,
-    body: string
+    body: string,
+    links: string[]
+    taglist: string[]
 }
 
 export async function getProjects(): Promise<Project[]> {
@@ -24,7 +23,7 @@ export async function createProject(data: projectData, email: string): Promise<P
     //validation
     if(!data.body) throw new Error("body is empty");
     if(!data.title) throw new Error("title is empty");
-    // if(!data.taglist) throw new Error("taglist is empty");
+    if(!data.taglist) throw new Error("taglist is empty");
     try {
 
         const repo = getRepository(Project);
@@ -34,9 +33,11 @@ export async function createProject(data: projectData, email: string): Promise<P
         if(!user) throw new Error("user does not exists");
         
         const article = repo.save(new Project(
+            await slugify(data.title),
             data.title,
-            data.title,
+            data.links,
             data.body,
+            data.taglist,
             await sanitization(user)
         ));
         return article;

@@ -1,5 +1,5 @@
 import { Router} from "express";
-import { getProjects, createProject} from "../controller/article";
+import { getProjects, createProject} from "../controller/project";
 import { authByToken } from "../middleware/auth";
 
 const route = Router();
