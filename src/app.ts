@@ -2,10 +2,14 @@ import express from 'express';
 import {createConnection} from 'typeorm';
 import { Project } from './Models/projects';
 import { User } from './Models/users';
+import bodyParser = require('body-parser');
+import cors from 'cors';
 import {allRoutes} from "./route/allRoutes";
 
 const app = express();
-app.use(express.json());
+app.use(express.json() as any);
+app.use(cors());
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(allRoutes);
 
 const PORT = process.env.PORT || 4000;

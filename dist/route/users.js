@@ -11,7 +11,7 @@ route.get('/', async (req, res) => {
     }
     catch (e) {
         res.json({
-            err: `something went wrong ${e}`
+            err: `could not get all users ${e}`
         });
     }
 });
@@ -22,7 +22,7 @@ route.post('/register', async (req, res) => {
     }
     catch (e) {
         res.status(500).send({
-            err: `server err ${e}`
+            err: `user registration failed ${e}`
         });
     }
 });
@@ -32,9 +32,7 @@ route.post('/login', async (req, res) => {
         res.status(200).send(user);
     }
     catch (e) {
-        res.json({
-            err: e
-        });
+        res.status(500).send(`error while login ${e}`);
     }
 });
 exports.userRoute = route;

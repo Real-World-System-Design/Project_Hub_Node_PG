@@ -44,10 +44,10 @@ export async function registerUser(data: userRegisterData): Promise<User>{
 
 export async function loginUser(data: userLoginData) {
     //validation
-    if(!data.email) throw new Error('email filed is blank');
-    if(!data.password) throw new Error('password filed is blank');
-
+    
     try {
+        if(!data.email) throw new Error('email filed is blank');
+        if(!data.password) throw new Error('password filed is blank');
         const repo = getRepository(User);
         const user = await repo.findOne(data.email);
 
@@ -57,7 +57,7 @@ export async function loginUser(data: userLoginData) {
         const passMatch = await matchpass(data.password, user.password!!);
         if(passMatch == false) throw new Error("password does not match");
         user.token = await sign(user);      
-        return user;
+        return await sanitization(user);
     } catch (e) {
         throw e
     }

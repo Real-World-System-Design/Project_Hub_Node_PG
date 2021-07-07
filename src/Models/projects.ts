@@ -9,8 +9,8 @@ export class Project{
     @Column({type: 'text', nullable: false})
     title: string
 
-    @Column({type: 'text', nullable: false})
-    links: string[]
+    @Column({type: 'text', nullable: true})
+    links?: string[]
 
     @Column({type: 'text', nullable: false})
     body: string
@@ -27,6 +27,7 @@ export class Project{
     @UpdateDateColumn()
     updatedAt: Date
 
+/*
     constructor(slug: string, title: string, links: string[] ,body: string, tagList: string[],author: User){
         this.slug = slug
         this.title = title
@@ -34,5 +35,12 @@ export class Project{
         this.body = body
         this.tagList = tagList
         this.author = author
+    }
+*/
+
+    constructor(slug: string, title: string, body: string) {
+        this.slug = slug
+        this.title = title
+        this.body = body
     }
 }

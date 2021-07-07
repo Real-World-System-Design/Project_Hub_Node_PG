@@ -32,11 +32,11 @@ async function registerUser(data) {
 exports.registerUser = registerUser;
 async function loginUser(data) {
     //validation
-    if (!data.email)
-        throw new Error('email filed is blank');
-    if (!data.password)
-        throw new Error('password filed is blank');
     try {
+        if (!data.email)
+            throw new Error('email filed is blank');
+        if (!data.password)
+            throw new Error('password filed is blank');
         const repo = typeorm_1.getRepository(users_1.User);
         const user = await repo.findOne(data.email);
         if (!user)
@@ -46,7 +46,7 @@ async function loginUser(data) {
         if (passMatch == false)
             throw new Error("password does not match");
         user.token = await jwt_1.sign(user);
-        return user;
+        return await sanitization_1.sanitization(user);
     }
     catch (e) {
         throw e;

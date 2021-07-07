@@ -13,13 +13,20 @@ exports.Project = void 0;
 const typeorm_1 = require("typeorm");
 const users_1 = require("./users");
 let Project = class Project {
-    constructor(slug, title, links, body, tagList, author) {
+    /*
+        constructor(slug: string, title: string, links: string[] ,body: string, tagList: string[],author: User){
+            this.slug = slug
+            this.title = title
+            this.links = links
+            this.body = body
+            this.tagList = tagList
+            this.author = author
+        }
+    */
+    constructor(slug, title, body) {
         this.slug = slug;
         this.title = title;
-        this.links = links;
         this.body = body;
-        this.tagList = tagList;
-        this.author = author;
     }
 };
 __decorate([
@@ -31,7 +38,7 @@ __decorate([
     __metadata("design:type", String)
 ], Project.prototype, "title", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'text', nullable: false }),
+    typeorm_1.Column({ type: 'text', nullable: true }),
     __metadata("design:type", Array)
 ], Project.prototype, "links", void 0);
 __decorate([
@@ -52,10 +59,21 @@ __decorate([
 ], Project.prototype, "createdAt", void 0);
 __decorate([
     typeorm_1.UpdateDateColumn(),
-    __metadata("design:type", Date)
+    __metadata("design:type", Date
+    /*
+        constructor(slug: string, title: string, links: string[] ,body: string, tagList: string[],author: User){
+            this.slug = slug
+            this.title = title
+            this.links = links
+            this.body = body
+            this.tagList = tagList
+            this.author = author
+        }
+    */
+    )
 ], Project.prototype, "updatedAt", void 0);
 Project = __decorate([
     typeorm_1.Entity("projects"),
-    __metadata("design:paramtypes", [String, String, Array, String, Array, users_1.User])
+    __metadata("design:paramtypes", [String, String, String])
 ], Project);
 exports.Project = Project;
