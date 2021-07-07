@@ -30,6 +30,14 @@ __decorate([
     typeorm_1.Column({ type: 'text' }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+    __metadata("design:type", Date)
+], User.prototype, "createdAt", void 0);
+__decorate([
+    typeorm_1.UpdateDateColumn({ type: 'timestamp' }),
+    __metadata("design:type", Date)
+], User.prototype, "updatedAt", void 0);
 User = __decorate([
     typeorm_1.Entity("users"),
     __metadata("design:paramtypes", [String, String, String])

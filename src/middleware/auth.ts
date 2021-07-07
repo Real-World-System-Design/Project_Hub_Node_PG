@@ -18,5 +18,4 @@ export async function authByToken(req: Request, res: Response, next: NextFunctio
     } catch (e) {
         res.send(e);
     }
-
 }

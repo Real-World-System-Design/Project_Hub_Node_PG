@@ -6,41 +6,33 @@ export class Project{
     @PrimaryColumn()
     slug: string
 
-    @Column({type: 'text', nullable: false})
+    @Column({type: 'text', nullable: true})
     title: string
 
-    @Column({type: 'text', nullable: true})
-    links?: string[]
+    @Column('json', {default: [], nullable: true})
+    links?: Array<string>
 
-    @Column({type: 'text', nullable: false})
+    @Column({type: 'text', nullable: true})
     body: string
 
-    @Column({type: 'text', nullable: true})
-    tagList?: string[]
+    @Column('json', {default: [], nullable: true})
+    tags?: Array<string>
 
     @ManyToOne(() => User)
     author: User
 
-    @CreateDateColumn()
+    @CreateDateColumn({type: 'timestamp'})
     createdAt: Date
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({type: 'timestamp'})
     updatedAt: Date
 
-/*
-    constructor(slug: string, title: string, links: string[] ,body: string, tagList: string[],author: User){
+    constructor(slug: string, title: string, links: string[] ,body: string, tags: string[], author: User){
         this.slug = slug
         this.title = title
         this.links = links
         this.body = body
-        this.tagList = tagList
+        this.tags = tags
         this.author = author
-    }
-*/
-
-    constructor(slug: string, title: string, body: string) {
-        this.slug = slug
-        this.title = title
-        this.body = body
     }
 }

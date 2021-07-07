@@ -7,13 +7,12 @@ const express_1 = __importDefault(require("express"));
 const typeorm_1 = require("typeorm");
 const projects_1 = require("./Models/projects");
 const users_1 = require("./Models/users");
-const bodyParser = require("body-parser");
 const cors_1 = __importDefault(require("cors"));
 const allRoutes_1 = require("./route/allRoutes");
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(cors_1.default());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({extended:true}))
 app.use(allRoutes_1.allRoutes);
 const PORT = process.env.PORT || 4000;
 app.get('/', (req, res) => {
