@@ -40,7 +40,7 @@ async function start() {
             }
         },
         url: DB_URL,
-        dropSchema: true,
+        dropSchema: false,
         synchronize: true,
         entities: [User, Project],
         logging: true,
