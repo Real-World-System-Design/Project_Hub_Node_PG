@@ -23,39 +23,39 @@ let Project = class Project {
     }
 };
 __decorate([
-    typeorm_1.PrimaryColumn(),
+    (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", String)
 ], Project.prototype, "slug", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'text', nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', nullable: true }),
     __metadata("design:type", String)
 ], Project.prototype, "title", void 0);
 __decorate([
-    typeorm_1.Column('json', { default: [], nullable: true }),
+    (0, typeorm_1.Column)('json', { default: [], nullable: true }),
     __metadata("design:type", Array)
 ], Project.prototype, "links", void 0);
 __decorate([
-    typeorm_1.Column({ type: 'text', nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', nullable: true }),
     __metadata("design:type", String)
 ], Project.prototype, "body", void 0);
 __decorate([
-    typeorm_1.Column('json', { default: [], nullable: true }),
+    (0, typeorm_1.Column)('json', { default: [], nullable: true }),
     __metadata("design:type", Array)
 ], Project.prototype, "tags", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => users_1.User),
+    (0, typeorm_1.ManyToOne)(() => users_1.User),
     __metadata("design:type", users_1.User)
 ], Project.prototype, "author", void 0);
 __decorate([
-    typeorm_1.CreateDateColumn({ type: 'timestamp' }),
+    (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Project.prototype, "createdAt", void 0);
 __decorate([
-    typeorm_1.UpdateDateColumn({ type: 'timestamp' }),
+    (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Project.prototype, "updatedAt", void 0);
 Project = __decorate([
-    typeorm_1.Entity("projects"),
+    (0, typeorm_1.Entity)("projects"),
     __metadata("design:paramtypes", [String, String, Array, String, Array, users_1.User])
 ], Project);
 exports.Project = Project;

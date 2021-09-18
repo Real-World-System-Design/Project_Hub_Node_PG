@@ -11,7 +11,7 @@ async function authByToken(req, res, next) {
         return res.status(401).send("Token missing");
     try {
         const token = authHeader[1];
-        const user = await jwt_1.decode(token);
+        const user = await (0, jwt_1.decode)(token);
         if (!user)
             throw new Error("No User found");
         req.user = user;

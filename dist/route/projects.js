@@ -4,14 +4,14 @@ exports.projectRoute = void 0;
 const express_1 = require("express");
 const project_1 = require("../controller/project");
 const auth_1 = require("../middleware/auth");
-const route = express_1.Router();
+const route = (0, express_1.Router)();
 route.get('/', async (req, res) => {
-    const articles = await project_1.getProjects();
+    const articles = await (0, project_1.getProjects)();
     res.send(articles);
 });
 route.get('/:slug', async (req, res) => {
     try {
-        const project = await project_1.getProjectBySlug(req.params.slug);
+        const project = await (0, project_1.getProjectBySlug)(req.params.slug);
         res.status(200).send(project);
     }
     catch (e) {
@@ -22,7 +22,7 @@ route.get('/:slug', async (req, res) => {
 });
 route.post('/create', auth_1.authByToken, async (req, res) => {
     try {
-        const article = await project_1.createProject(req.body, req.user.email);
+        const article = await (0, project_1.createProject)(req.body, req.user.email);
         res.status(200).send(article);
     }
     catch (e) {
@@ -33,7 +33,7 @@ route.post('/create', auth_1.authByToken, async (req, res) => {
 });
 route.patch('/update/:slug', auth_1.authByToken, async (req, res) => {
     try {
-        const project = await project_1.updateProjectDetails(req.params.slug, req.body, req.user.email);
+        const project = await (0, project_1.updateProjectDetails)(req.params.slug, req.body, req.user.email);
         res.status(200).send(project);
     }
     catch (e) {
@@ -44,7 +44,7 @@ route.patch('/update/:slug', auth_1.authByToken, async (req, res) => {
 });
 route.delete('/delete/:slug', auth_1.authByToken, async (req, res) => {
     try {
-        const project = await project_1.delteProject(req.params.slug, req.user.email);
+        const project = await (0, project_1.delteProject)(req.params.slug, req.user.email);
         res.status(200).send("sucess");
     }
     catch (e) {

@@ -12,9 +12,9 @@ const cors_1 = __importDefault(require("cors"));
 const morgan = require('morgan');
 const log = require('./config/winston');
 const allRoutes_1 = require("./route/allRoutes");
-const app = express_1.default();
+const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use(cors_1.default());
+app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(morgan("combined", { "stream": log.stream }));
 app.use(allRoutes_1.allRoutes);
@@ -31,7 +31,7 @@ app.use(function (err, req, res, next) {
     next(err);
 });
 async function start() {
-    await typeorm_1.createConnection({
+    await (0, typeorm_1.createConnection)({
         type: "postgres",
         ssl: true,
         extra: {
@@ -40,7 +40,7 @@ async function start() {
             }
         },
         url: DB_URL,
-        dropSchema: true,
+        dropSchema: false,
         synchronize: true,
         entities: [users_1.User, projects_1.Project],
         logging: true,

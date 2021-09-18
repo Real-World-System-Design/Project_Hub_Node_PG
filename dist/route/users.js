@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.userRoute = void 0;
 const express_1 = require("express");
 const users_1 = require("../controller/users");
-const route = express_1.Router();
+const route = (0, express_1.Router)();
 route.get('/', async (req, res) => {
     try {
-        const users = await users_1.getAllUsers();
+        const users = await (0, users_1.getAllUsers)();
         res.status(200).send(users);
     }
     catch (e) {
@@ -17,7 +17,7 @@ route.get('/', async (req, res) => {
 });
 route.post('/register', async (req, res) => {
     try {
-        const user = await users_1.registerUser(req.body);
+        const user = await (0, users_1.registerUser)(req.body);
         res.status(200).send(user);
     }
     catch (e) {
@@ -28,7 +28,7 @@ route.post('/register', async (req, res) => {
 });
 route.post('/login', async (req, res) => {
     try {
-        const user = await users_1.loginUser(req.body);
+        const user = await (0, users_1.loginUser)(req.body);
         res.status(200).send(user);
     }
     catch (e) {

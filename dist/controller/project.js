@@ -7,13 +7,13 @@ const users_1 = require("../Models/users");
 const sanitization_1 = require("../utils/sanitization");
 const slugify_1 = require("../utils/slugify");
 async function getProjects() {
-    const repo = typeorm_1.getRepository(projects_1.Project);
+    const repo = (0, typeorm_1.getRepository)(projects_1.Project);
     const projects = await repo.find();
     return projects;
 }
 exports.getProjects = getProjects;
 async function getProjectBySlug(slug) {
-    const repo = typeorm_1.getRepository(projects_1.Project);
+    const repo = (0, typeorm_1.getRepository)(projects_1.Project);
     try {
         const project = await repo.findOne(slug);
         if (!project)
@@ -34,12 +34,12 @@ async function createProject(data, email) {
     if (!data.tags)
         throw new Error("add upto one tag");
     try {
-        const repo = typeorm_1.getRepository(projects_1.Project);
-        const userRepo = typeorm_1.getRepository(users_1.User);
+        const repo = (0, typeorm_1.getRepository)(projects_1.Project);
+        const userRepo = (0, typeorm_1.getRepository)(users_1.User);
         const user = await userRepo.findOne(email);
         if (!user)
             throw new Error("user does not exists");
-        const newProject = await repo.save(new projects_1.Project(await slugify_1.slugify(data.title), data.title, data.links, data.body, data.tags, await sanitization_1.sanitization(user)));
+        const newProject = await repo.save(new projects_1.Project(await (0, slugify_1.slugify)(data.title), data.title, data.links, data.body, data.tags, await (0, sanitization_1.sanitization)(user)));
         return newProject;
     }
     catch (e) {
@@ -49,8 +49,8 @@ async function createProject(data, email) {
 exports.createProject = createProject;
 async function updateProjectDetails(slug, data, email) {
     try {
-        const repo = typeorm_1.getRepository(projects_1.Project);
-        const userRepo = typeorm_1.getRepository(users_1.User);
+        const repo = (0, typeorm_1.getRepository)(projects_1.Project);
+        const userRepo = (0, typeorm_1.getRepository)(users_1.User);
         const user = await userRepo.findOne(email);
         if (!user)
             throw new Error("user does not exists");
@@ -75,8 +75,8 @@ async function updateProjectDetails(slug, data, email) {
 exports.updateProjectDetails = updateProjectDetails;
 async function delteProject(slug, email) {
     try {
-        const reop = typeorm_1.getRepository(projects_1.Project);
-        const userRepo = typeorm_1.getRepository(users_1.User);
+        const reop = (0, typeorm_1.getRepository)(projects_1.Project);
+        const userRepo = (0, typeorm_1.getRepository)(users_1.User);
         const user = await userRepo.findOne(email);
         if (!user)
             throw new Error("user does not exists");
